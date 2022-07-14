@@ -52,11 +52,11 @@ it('should throw an error with a message that contains a reason (invalid number)
   expect(validationFn).toThrow(/Invalid number/);
 });
 
-// it('should throw an error if a non-numeric value is provided', () => {
-//   const input = '1';
-//   const validationFn = () => validateNumber(input);
-//   expect(validationFn).toThrow();
-// });
+it('should throw an error if a non-numeric value is provided', () => {
+  const input = '1';
+  const validationFn = () => validateNumber(input);
+  expect(validationFn).toThrow();
+});
 
 it('should not throw an error, if a number is provided', () => {
   const input = 1;
