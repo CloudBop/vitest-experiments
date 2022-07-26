@@ -3,7 +3,8 @@ import { it } from "vitest"
 import { generateToken } from "./async-example"
 
 it("should (with correct input) generate a token value", (
-
+  // fn to invoke after async logic - jest too 
+  done
 ) => {
   const testUserEmail = "test@test.com";
 
@@ -12,5 +13,7 @@ it("should (with correct input) generate a token value", (
 
     // this passes, but it should fail...
     expect(token).toBe(2);
+    // wait for async before timeout
+    done()
   })
 })
