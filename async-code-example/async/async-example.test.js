@@ -26,7 +26,12 @@ it("should return Promise (with correct input) generate a token value - testing 
   // done
 ) => {
   const testUserEmail = "test@test.com";
-  expect(generateTokenPromise(testUserEmail)).resolves.toBeDefined()
+
+  return expect(generateTokenPromise(testUserEmail)).resolves.toBeDefined()
+  /** why return?
+   * This guarantees that Vitest / Jest wait for the promise to be resolved.
+   * You don't need to return when using async / await (since a function annotated with async returns a promise implicitly).
+   */
 })
 
 it("should return Promise (with correct input) generate a token value - testing Promise", async (
