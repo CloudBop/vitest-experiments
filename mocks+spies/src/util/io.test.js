@@ -2,7 +2,7 @@ import { it, expect, vi } from "vitest";
 import writeData from './io';
 import { promises as fs } from 'fs';
 //
-// - overrule fs implementation, this will make current test fail as the fs (invoked in io.js) wont return a promise!
+// - overrule fs implementation, this will make current test fail as the fs (invoked in io.js) wont return a promise! !!! can also affect other test modules.
 vi.mock('fs');
 //
 //
