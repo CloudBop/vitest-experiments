@@ -9,7 +9,10 @@ import { generateReportData } from "./data";
 describe("generateReportData()", () => {
   it("should execute logFn if provided", () => {
     // create spy -> don't need to invoke/test the actual console.log()->[sideeffect]
-    const logger = vi.fn();
+    const logger = vi.fn(
+      // can mock logic with callback
+      //()=>{}
+    );
     //
     generateReportData(logger)
     // has our spy been called.
