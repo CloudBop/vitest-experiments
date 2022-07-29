@@ -17,7 +17,7 @@ vi.mock('path', () => {
 });
 //
 //
-it("should execute the writeFile method [sideffect]", () => {
+it("should execute the writeFile method [mocked sideffect]", () => {
   const testData = 'test';
   const testFileName = 'test.txt';
 
@@ -26,6 +26,19 @@ it("should execute the writeFile method [sideffect]", () => {
   // return expect(writeData(testData, testFileName)).resolves.toBeUndefined();
   // expect(fs.writeFile).toBeCalled();
   expect(fs.writeFile).toBeCalled(testFileName, testData);
+  // if filepath ("../../data/ ") doesn't exist it will fail
+  //we wouldn't want to actually test the implementation, in this case nodejs filesystem. as this could mean mutating raw data on the system
+})
+it("should return a promise from the writeFile via mock", () => {
+  const testData = 'test';
+  const testFileName = 'test.txt';
+
+  // invoke to assert that the mock was called.
+  writeData(testData, testFileName);
+  // utilising __mock__ with test logic/implmnta 
+  return expect(writeData(testData, testFileName)).resolves.toBeUndefined();
+  // expect(fs.writeFile).toBeCalled();
+  // expect(fs.writeFile).toBeCalled(testFileName, testData);
   // if filepath ("../../data/ ") doesn't exist it will fail
   //we wouldn't want to actually test the implementation, in this case nodejs filesystem. as this could mean mutating raw data on the system
 })
