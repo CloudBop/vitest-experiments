@@ -13,6 +13,8 @@ describe("generateReportData()", () => {
       // can mock logic with callback
       //()=>{}
     );
+
+    // logger.mockImplementationOnce(() => ({ "inline": "overrule" }))
     //
     generateReportData(logger)
     // has our spy been called.
