@@ -1,5 +1,10 @@
-import { it, expect } from "vitest";
+import { it, expect, vi } from "vitest";
 import writeData from './io';
+//
+// - overrule fs implementation, this will make current test fail as the fs (invoked in io.js) wont return a promise!
+vi.mock('fs');
+//
+//
 it("should execute the writeFile method [sideffect]", () => {
   const testData = 'test';
   const testFileName = 'test.txt';
