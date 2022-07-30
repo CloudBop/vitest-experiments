@@ -41,3 +41,26 @@ it('should convert data to JSON before sending request', async () => {
   expect(errorMsg).not.toBe('Not a string')
 })
 
+it('should throw an HttpError in case of non-ok responses', () => {
+
+  testFetch.mockImplementationOnce((url, options) => {
+    return new Promise((resolve, reject) => {
+      if (typeof options.body !== 'string') {
+        return reject('Not a string')
+      }
+      const testResponse = {
+        // force an error
+        ok: false,
+        json() {
+          return new Promise((resolve, reject) => {
+            resolve(testResponseData)
+          })
+        }
+      }
+      resolve(testResponse)
+    })
+  });
+
+  const testData = { key: 'test' }
+  return expect(sendDataRequest(testData)).rejects.toBeInstanceOf(HttpError)
+})
