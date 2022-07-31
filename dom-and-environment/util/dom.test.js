@@ -1,4 +1,4 @@
-import { it, vi } from 'vitest'
+import { expect, it, vi } from 'vitest'
 import fs from "fs"
 import path from "path"
 import { showError } from './dom'
@@ -14,7 +14,12 @@ document = window.document;
 document.write(htmlDocumentContent)
 // configure global
 vi.stubGlobal('document', document)
-it('first dom test', () => {
+it('should add an error <p> to id="erros element ', () => {
   //
   showError('test');
+
+  const errorsEl = document.getElementById("errors")
+
+  const errP = errorsEl.firstElementChild;
+  expect(errP).not.toBeNull();
 })
