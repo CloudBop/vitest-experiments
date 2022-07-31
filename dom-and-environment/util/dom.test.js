@@ -1,4 +1,4 @@
-import { expect, it, vi } from 'vitest'
+import { beforeEach, expect, it, vi } from 'vitest'
 import fs from "fs"
 import path from "path"
 import { showError } from './dom'
@@ -14,12 +14,23 @@ document = window.document;
 document.write(htmlDocumentContent)
 // configure global
 vi.stubGlobal('document', document)
+
+beforeEach(() => {
+  document.body.innerHTML = '';
+  document.write(htmlDocumentContent)
+})
+
 it('should add an error <p> to id="erros element ', () => {
   //
   showError('test');
 
   const errorsEl = document.getElementById("errors")
-
   const errP = errorsEl.firstElementChild;
   expect(errP).not.toBeNull();
+})
+it('should not contain an error <p> to id="erros element before ann error happens', () => {
+  //
+  const errorsEl = document.getElementById("errors")
+  const errP = errorsEl.firstElementChild;
+  expect(errP).toBeNull();
 })
