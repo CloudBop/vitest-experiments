@@ -20,7 +20,7 @@ beforeEach(() => {
   document.write(htmlDocumentContent)
 })
 
-it('should add an error <p> to id="erros element ', () => {
+it('should add an error <p> to id="error" element ', () => {
   //
   showError('test');
 
@@ -33,4 +33,14 @@ it('should not contain an error <p> to id="erros element before ann error happen
   const errorsEl = document.getElementById("errors")
   const errP = errorsEl.firstElementChild;
   expect(errP).toBeNull();
+})
+it('should output an error <p> to id="error" element with correct text ', () => {
+  //
+  let errorMessage = "Test"
+  showError(errorMessage);
+
+  const errorsEl = document.getElementById("errors")
+  const errP = errorsEl.firstElementChild;
+  expect(errP.textContent).toBe(errorMessage);
+  // expect(errP.innerHTML).toEqual(errorMessage);
 })
